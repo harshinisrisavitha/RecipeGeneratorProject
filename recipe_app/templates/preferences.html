@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+{% set background_url = 'https://images.unsplash.com/photo-1584270354949-e26f52c74b0b' %}
+<h2>Select Your Preferences</h2>
+<form method="post" class="bg-dark p-4 rounded shadow">
+    <div class="form-group">
+        <label>Meal Type:</label>
+        <select name="meal_type" class="form-control" required>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="dessert">Dessert</option>
+            <option value="starter">Starter</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Dietary Restrictions:</label>
+        {% for restriction in restrictions %}
+        <div class="form-check text-white">
+            <input class="form-check-input" type="checkbox" name="restriction" value="{{ restriction.restriction_id }}" id="r{{ restriction.restriction_id }}">
+            <label class="form-check-label" for="r{{ restriction.restriction_id }}">
+                {{ restriction.name }} - <small>{{ restriction.description }}</small>
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-warning mt-3">Next</button>
+</form>
+{% endblock %}

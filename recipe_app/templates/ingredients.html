@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{% set background_url = 'https://images.unsplash.com/photo-1604908177522-c1a9737c7b8d' %}
+<h2>Select Available Ingredients</h2>
+<form method="post" class="bg-dark p-4 rounded shadow">
+    <div class="row">
+        {% for ingredient in ingredients %}
+        <div class="col-md-6 col-lg-4">
+            <div class="form-check text-white">
+                <input class="form-check-input" type="checkbox" name="ingredient" value="{{ ingredient.ingredient_id }}" id="i{{ ingredient.ingredient_id }}">
+                <label class="form-check-label" for="i{{ ingredient.ingredient_id }}">
+                    {{ ingredient.name }}
+                </label>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-success mt-4">Find Recipes</button>
+</form>
+{% endblock %}

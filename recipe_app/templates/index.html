@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personalized Recipe Generator</title>
+</head>
+<body>
+    <h1>Select Your Preferences</h1>
+
+    <form action="/results" method="post">
+        <label for="restriction">Dietary Preference:</label>
+        <select name="restriction" required>
+            <option value="any">Any</option>
+            {% for r in restrictions %}
+                <option value="{{ r.restriction_id }}">
+                    {{ r.name }} - {{ r.description }}
+                </option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="meal_type">Meal Type:</label>
+        <select name="meal_type" required>
+            {% for meal in meal_types %}
+                <option value="{{ meal }}">{{ meal.capitalize() }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label>Available Ingredients:</label><br>
+        {% for ingredient in ingredients %}
+            <input type="checkbox" name="ingredient" value="{{ ingredient.ingredient_id }}">
+            {{ ingredient.name }}<br>
+        {% endfor %}
+        <br>
+
+        <input type="submit" value="Find Recipes">
+    </form>
+</body>
+</html>

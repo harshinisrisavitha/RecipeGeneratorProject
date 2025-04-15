@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+{% set background_url = recipe.image_url or 'https://images.unsplash.com/photo-1543353071-873f17a7a088' %}
+<h2>{{ recipe.name }}</h2>
+<div class="card shadow bg-dark p-4 text-white">
+    <img src="{{ url_for('static', filename='images/' ~ recipe.image_url) }}" class="img-fluid mb-3 rounded">
+    <p><strong>Description:</strong> {{ recipe.description }}</p>
+    <p><strong>Prep Time:</strong> {{ recipe.prep_time }} mins</p>
+    <p><strong>Cook Time:</strong> {{ recipe.cook_time }} mins</p>
+    <p><strong>Total Time:</strong> {{ recipe.total_time }} mins</p>
+    <p><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
+    <p><strong>Servings:</strong> {{ recipe.servings }}</p>
+
+    <h4 class="mt-4">Ingredients</h4>
+    <ul class="list-group list-group-flush text-white">
+        {% for ing in ingredients %}
+        <li class="list-group-item bg-transparent border-light">
+            {{ ing.quantity }} {{ ing.unit }} {{ ing.name }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h4 class="mt-4">Steps</h4>
+    <ol class="pl-4">
+        {% for step in steps %}
+        <li class="mb-2">{{ step.instruction }}</li>
+        {% endfor %}
+    </ol>
+
+    <a href="/" class="btn btn-light mt-3">Back to Home</a>
+</div>
+{% endblock %}

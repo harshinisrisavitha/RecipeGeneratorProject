@@ -1,0 +1,40 @@
+{% set background_image = 'b2.jpeg' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/' ~ background_image) }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        .overlay {
+            background-color: rgba(119, 117, 117, 0.6);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        h2 {
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        label, .form-check-label {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

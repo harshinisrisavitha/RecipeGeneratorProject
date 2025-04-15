@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matching Recipes</title>
+    <style>
+        body {
+            background-image: url('/static/images/signup.png');
+            background-size: cover;
+            font-family: sans-serif;
+            color: white;
+            padding: 40px;
+        }
+        .recipe {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        img {
+            max-height: 200px;
+            border-radius: 10px;
+        }
+        a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Matching Recipes</h1>
+    {% for recipe in recipes %}
+    <div class="recipe">
+        <h2>{{ recipe.name }}</h2>
+        <img src="{{ recipe.image_url }}" alt="Image of {{ recipe.name }}">
+        <p>{{ recipe.name}}</p>
+        <a href="{{ url_for('recipe_detail', recipe_id=recipe.recipe_id) }}">View Recipe</a>
+    </div>
+    {% endfor %}
+</body>
+</html>

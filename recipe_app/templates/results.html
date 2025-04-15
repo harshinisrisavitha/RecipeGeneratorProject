@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+{% set background_url = 'static/images/signup.png' %}
+<h2>Matching Recipes</h2>
+{% if recipes %}
+<div class="row">
+    {% for recipe in recipes %}
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-lg">
+            <img src="{{ url_for('static', filename='images/' ~ recipe.image_url) }}" class="card-img-top" alt="{{ recipe.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.name }}</h5>
+                <p class="card-text text-dark">{{ recipe.name[:100] }}...</p>
+                <a href="{{ url_for('recipe_detail', recipe_id=recipe.recipe_id) }}" class="btn btn-outline-primary btn-sm">View Recipe</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">No matching recipes found. Try changing your ingredients or preferences.</div>
+{% endif %}
+{% endblock %}
